@@ -1,0 +1,29 @@
+% extends 'polls/base.html' %}
+{% block content %}
+
+{% if umfrage.name %}
+<h1>{{ umfrage.name }}</h1>  
+{% if umfrage.choice_set.all %} 
+<!-- Information Übertragung mit Post % url 'vote' umfrage.slug %    --> 
+<!-- id="choice{{ forloop.counter }}"/> die nummer der aktuellen for schleife -->
+<form action = "{% url 'vote' umfrage.slug %}" method="post">
+    {% csrf_token %}
+    <label for="fname">Name:</label>
+    <input type="text" name="name"><br><br>
+    <label for="lname">Email:</label>
+    <input type="text" name="email"><br><br>
+    
+    {% for choice in umfrage.choice_set.all %}
+        <input type="radio" name="choice" value ="{{ choice.id }}" id="choice{{ forloop.counter }}"/>
+        <label for="choice{{ forloop.counter }}">{{ choice.name }}</label>
+    {% endfor %}
+ <input type="submit" value="Antwort senden">
+</form>
+{% else %}
+<p> Es wurde keine Möglichkeit hiterlegt</p>
+{% endif %}
+{% else %}
+<h1>Es konnte keine Umfrage ausgegeben werden</h1>
+{% endif %}
+{% endblock %}
+      

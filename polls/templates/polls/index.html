@@ -1,0 +1,24 @@
+{% block content %}
+<h1>{{ title }}</h1>  
+<p class="lead">
+    Herzlich Willkommen zu ESG Skill Seite 
+</p>
+<hr />
+<h2>
+    Aktuell Programme
+</h2>
+
+{% if umfragen %}   
+<ul>
+    {% for umfrage in umfragen %}  
+    <!-- <li><a href="abstimmung/{{ umfrage.slug}}/">{{umfrage.name}}</a></li> -->
+    <li><a href="{% url 'umfrage-detail' umfrage.slug %}">{{umfrage.name}}</a></li>
+    {% endfor %}      
+</ul>  
+{% endif %}
+
+
+
+<img src="https://th.bing.com/th/id/OIP.kgtBM7_2mWc2XefOHoC-mAHaEN?pid=ImgDet&rs=1" width="50%" height="50%" >
+
+{% endblock %}

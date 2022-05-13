@@ -1,0 +1,1 @@
+web: gunicorn esg.wsgi:application --log-file -
